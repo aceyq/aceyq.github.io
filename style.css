@@ -294,10 +294,24 @@ footer {
   color: var(--text);
   margin-bottom: 4px;
 }
-.skills-items {
-  font-size: 0.8rem;
+.skills-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-pill {
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
   color: var(--text-dim);
-  line-height: 1.7;
+  background: var(--bg2);
+  transition: border-color 0.2s, color 0.2s;
+}
+.skill-pill:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold);
 }
 
 /* Sidebar */
