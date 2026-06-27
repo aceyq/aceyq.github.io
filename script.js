@@ -161,13 +161,14 @@ if (fc) {
     twinkle: (Math.random() * 0.003 + 0.001) * (Math.random() < 0.5 ? 1 : -1),
   }));
 
-  const clouds = Array.from({ length: 6 }, () => ({
+  const wisps = Array.from({ length: 5 }, (_, i) => ({
     x: Math.random() * (typeof W !== 'undefined' ? W : 800),
-    y: (typeof H !== 'undefined' ? H : 600) * (0.12 + Math.random() * 0.35),
-    w: Math.random() * 220 + 140,
-    h: Math.random() * 35 + 18,
-    speed: Math.random() * 0.12 + 0.04,
-    alpha: Math.random() * 0.03 + 0.015,
+    y: (typeof H !== 'undefined' ? H : 600) * (0.08 + Math.random() * 0.4),
+    rx: Math.random() * 160 + 90,
+    ry: Math.random() * 50 + 25,
+    speed: (Math.random() - 0.5) * 0.06,
+    alpha: Math.random() * 0.025 + 0.012,
+    hue: i % 3,
   }));
 
   function drawFlies() {
@@ -198,22 +199,25 @@ if (fc) {
     ctx.fillStyle = "rgba(240,235,220,0.13)";
     ctx.fill();
 
-    // Drifting clouds
-    for (const c of clouds) {
-      c.x += c.speed;
-      if (c.x > W + c.w) c.x = -c.w * 1.5;
-      const blobs = [
-        { dx: 0, dy: 0, rx: c.w * 0.5, ry: c.h * 0.45 },
-        { dx: -c.w * 0.28, dy: c.h * 0.1, rx: c.w * 0.35, ry: c.h * 0.35 },
-        { dx: c.w * 0.26, dy: -c.h * 0.06, rx: c.w * 0.32, ry: c.h * 0.32 },
-        { dx: c.w * 0.1, dy: c.h * 0.15, rx: c.w * 0.25, ry: c.h * 0.28 },
-      ];
-      for (const b of blobs) {
-        ctx.beginPath();
-        ctx.ellipse(c.x + b.dx, c.y + b.dy, b.rx, b.ry, 0, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180,185,175,${c.alpha})`;
-        ctx.fill();
-      }
+    // Glowing wisps
+    const wispColors = [
+      [232,201,122],  // gold
+      [201,137,122],  // blush
+      [107,158,120],  // moss
+    ];
+    for (const w of wisps) {
+      w.x += w.speed;
+      if (w.x > W + w.rx * 2) w.x = -w.rx * 2;
+      if (w.x < -w.rx * 2) w.x = W + w.rx * 2;
+      const [r,g,b] = wispColors[w.hue];
+      const grad = ctx.createRadialGradient(w.x, w.y, 0, w.x, w.y, w.rx);
+      grad.addColorStop(0, `rgba(${r},${g},${b},${w.alpha})`);
+      grad.addColorStop(0.6, `rgba(${r},${g},${b},${w.alpha * 0.3})`);
+      grad.addColorStop(1, "transparent");
+      ctx.beginPath();
+      ctx.ellipse(w.x, w.y, w.rx, w.ry, 0, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
     }
 
     // Rolling hills
