@@ -32,59 +32,51 @@
       </div>
 
       <div class="about-grid">
+
+        <!-- LEFT: text -->
         <div class="about-text">
-
-          <!-- ✏️ WRITE YOUR OWN CONTENT IN THE <p> TAGS BELOW -->
-
           <p class="about-intro">
-            hey! i'm acelynn — a data science student at UC San Diego with a soft spot for numbers that tell a story.
+            Hi! I'm Acelynn, a Data Science student at UC San Diego who enjoys using data to understand problems and build practical solutions.
           </p>
-
           <p>
-            <!-- Add your own words here. What drives you? What are you curious about? -->
-            [write something about yourself here — what you care about, what gets you excited, your vibe]
+            Outside of school, I'm usually learning a new recipe, walking dogs (yes, through Rover!), or getting completely absorbed in a puzzle. My biggest hobby is dance. I love performing, teaching, and being part of a community that keeps me creative.
           </p>
-
           <p>
-            <!-- Health interest, business analytics, etc. -->
-            [mention your interest in health analytics, what drew you to data science, etc.]
-          </p>
-
-          <p>
-            <!-- Fun personal stuff -->
-            [something personal — KOTX dance team, what you do for fun, your dog if you have one, etc.]
+            I also enjoy building side projects and exploring new technologies, especially when they combine data, AI, and real-world decision making. This site is a collection of some of the things I've been working on.
           </p>
 
           <div class="about-currently">
             <p class="currently-label">currently</p>
             <ul class="currently-list">
-              <li>📊 interning @ Juice Reel</li>
+              <li>📊 data science intern @ Juice Reel</li>
               <li>🎓 studying data science @ UCSD</li>
-              <li>💃 dancing with KOTX</li>
-              <li><!-- add something fun --></li>
+              <li>🐾 walking dogs on Rover</li>
+              <li>💃 dance coordinator @ KOTX</li>
             </ul>
           </div>
-
         </div>
 
+        <!-- RIGHT: photo + cards -->
         <div class="about-sidebar">
+
+          <!-- Photo — name your file acelynn.jpg and drop it in the folder -->
+          <div class="about-photo-wrap">
+            <img src="acelynn.jpg" alt="Acelynn Qiao"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="photo-placeholder" style="display:none;">
+              <span>🐾</span>
+              add a photo named<br><strong>acelynn.jpg</strong><br>to the folder
+            </div>
+          </div>
+
           <div class="sidebar-card">
             <p class="card-label">i like</p>
             <ul class="likes-list">
-              <li>health + business analytics</li>
-              <li>making data useful</li>
-              <li>studio ghibli</li>
-              <li><!-- add more --></li>
-              <li><!-- add more --></li>
-            </ul>
-          </div>
-
-          <div class="sidebar-card">
-            <p class="card-label">studying</p>
-            <ul class="likes-list">
-              <li>B.S. Data Science</li>
-              <li>Minor in Business Analytics</li>
-              <li>UC San Diego · class of 2027</li>
+              <li>🐕 dogs (obviously)</li>
+              <li>📊 health & business analytics</li>
+              <li>🧩 puzzles</li>
+              <li>🍳 trying new recipes</li>
+              <li>💃 dancing & performing</li>
             </ul>
           </div>
 
@@ -96,6 +88,7 @@
               <li><a href="mailto:acelynnq036@gmail.com">acelynnq036@gmail.com ↗</a></li>
             </ul>
           </div>
+
         </div>
       </div>
 
@@ -104,7 +97,7 @@
 
   <div class="dog-track">
     <div class="dog-wrap" id="dogWrap">
-      <canvas id="dogCanvas" width="48" height="32"></canvas>
+      <canvas id="dogCanvas"></canvas>
     </div>
   </div>
 
