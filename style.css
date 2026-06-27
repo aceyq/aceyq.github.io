@@ -284,26 +284,20 @@ footer {
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
-.skills-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.skill-pill {
-  padding: 5px 14px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
+.skills-group { margin-bottom: 14px; }
+.skills-group:last-child { margin-bottom: 0; }
+.skills-cat {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  background: var(--bg2);
-  transition: border-color 0.2s, color 0.2s;
+  font-size: 0.72rem;
+  color: var(--text);
+  margin-bottom: 4px;
 }
-.skill-pill:hover {
-  border-color: var(--gold-dim);
-  color: var(--gold);
+.skills-items {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  line-height: 1.7;
 }
 
 /* Sidebar */
