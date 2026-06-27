@@ -4,14 +4,11 @@
 
 // ---- ROTATING TEXT ----
 const phrases = [
+  "dog lover",
+  "golden retriever enthusiast",
+  "self-proclaimed chef",
   "data science student",
-  "business analytics nerd",
-  "health data enthusiast",
-  "huge dog lover",
-  "KOTX dance coordinator",
-  "metrics obsessive",
-  "rover dog walker",
-  "puzzle enthusiast",
+  "business analytics student",
 ];
 
 const el = document.getElementById("rotator");
@@ -144,7 +141,7 @@ if (fc) {
   }
 
   // Falling petals
-  const petals = Array.from({ length: 18 }, () => ({
+  const petals = Array.from({ length: 30 }, () => ({
     x: Math.random() * (typeof W !== 'undefined' ? W : 800),
     y: Math.random() * (typeof H !== 'undefined' ? H : 600),
     r: Math.random() * 3 + 1.5,
@@ -155,8 +152,41 @@ if (fc) {
     drot: (Math.random() - 0.5) * 0.02,
   }));
 
+  const stars = Array.from({ length: 80 }, () => ({
+    x: Math.random() * (typeof W !== 'undefined' ? W : 800),
+    y: Math.random() * (typeof H !== 'undefined' ? H : 600) * 0.65,
+    r: Math.random() * 0.8 + 0.2,
+    alpha: Math.random() * 0.5 + 0.1,
+    twinkle: (Math.random() * 0.003 + 0.001) * (Math.random() < 0.5 ? 1 : -1),
+  }));
+
   function drawFlies() {
     ctx.clearRect(0, 0, W, H);
+
+    // Stars
+    for (const s of stars) {
+      s.alpha += s.twinkle;
+      if (s.alpha > 0.6 || s.alpha < 0.05) s.twinkle *= -1;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220,215,200,${Math.max(0, Math.min(0.6, s.alpha))})`;
+      ctx.fill();
+    }
+
+    // Moon glow
+    const mx = W * 0.82, my = H * 0.12;
+    const mg = ctx.createRadialGradient(mx, my, 0, mx, my, 100);
+    mg.addColorStop(0, "rgba(235,225,195,0.10)");
+    mg.addColorStop(0.4, "rgba(235,225,195,0.03)");
+    mg.addColorStop(1, "transparent");
+    ctx.beginPath();
+    ctx.arc(mx, my, 100, 0, Math.PI * 2);
+    ctx.fillStyle = mg;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(mx, my, 15, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(240,235,220,0.13)";
+    ctx.fill();
 
     // Rolling hills
     ctx.beginPath();
