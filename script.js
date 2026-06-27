@@ -158,6 +158,29 @@ if (fc) {
   function drawFlies() {
     ctx.clearRect(0, 0, W, H);
 
+    // Rolling hills
+    ctx.beginPath();
+    ctx.moveTo(0, H);
+    ctx.lineTo(0, H * 0.85);
+    ctx.bezierCurveTo(W * 0.1, H * 0.80, W * 0.25, H * 0.84, W * 0.38, H * 0.81);
+    ctx.bezierCurveTo(W * 0.52, H * 0.78, W * 0.68, H * 0.83, W * 0.78, H * 0.80);
+    ctx.bezierCurveTo(W * 0.88, H * 0.77, W * 0.95, H * 0.82, W, H * 0.84);
+    ctx.lineTo(W, H);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(16, 22, 18, 0.45)";
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(0, H);
+    ctx.lineTo(0, H * 0.91);
+    ctx.bezierCurveTo(W * 0.12, H * 0.87, W * 0.28, H * 0.92, W * 0.42, H * 0.89);
+    ctx.bezierCurveTo(W * 0.58, H * 0.86, W * 0.72, H * 0.91, W * 0.85, H * 0.87);
+    ctx.bezierCurveTo(W * 0.93, H * 0.85, W * 0.98, H * 0.89, W, H * 0.88);
+    ctx.lineTo(W, H);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(12, 18, 14, 0.55)";
+    ctx.fill();
+
     // Draw trees — left and right corners
     drawTree(W * 0.04, H * 0.92, 1.15, false);
     drawTree(W * 0.96, H * 0.92, 1.0, true);
@@ -206,102 +229,3 @@ if (fc) {
 }
 
 
-// ---- PIXEL DOG (proper side-view, 20×12 grid) ----
-const C = {
-  _: null,
-  B: "#c8965a",  // tan body
-  D: "#5c3310",  // dark outline
-  N: "#0d0400",  // eye/nose
-  E: "#e8a090",  // ear pink
-  W: "#f5efe0",  // white belly/paws
-  G: "#e8c97a",  // gold collar
-  T: "#a06830",  // medium shadow tone
-};
-
-// 20 wide × 12 tall — proper side-view dog with tail up
-const F1 = [
-  "_","_","_","_","_","D","D","D","_","_","_","_","_","_","_","D","D","_","_","_",
-  "_","_","_","_","D","B","B","B","D","_","_","_","_","_","D","B","B","D","_","_",
-  "_","_","_","D","B","B","E","B","B","D","_","_","_","D","B","B","B","B","D","_",
-  "_","_","D","B","B","B","B","N","B","B","D","D","D","B","B","G","G","B","B","D",
-  "_","_","D","W","B","B","B","B","B","B","B","B","B","B","B","B","B","B","T","D",
-  "_","_","_","D","W","W","B","B","B","B","B","B","B","B","B","B","B","D","_","_",
-  "_","_","_","_","D","D","B","B","T","B","B","B","T","B","B","D","D","_","_","_",
-  "_","_","_","_","_","D","W","D","_","D","W","D","_","D","W","D","_","_","_","_",
-  "_","_","_","_","_","D","W","D","_","D","W","D","_","_","D","_","_","_","_","_",
-  "_","_","_","_","_","D","_","_","_","D","_","_","_","_","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-];
-
-// Walk frame 2 — front legs shift
-const F2 = [
-  "_","_","_","_","_","D","D","D","_","_","_","_","_","_","_","D","D","_","_","_",
-  "_","_","_","_","D","B","B","B","D","_","_","_","_","_","D","B","B","D","_","_",
-  "_","_","_","D","B","B","E","B","B","D","_","_","_","D","B","B","B","B","D","_",
-  "_","_","D","B","B","B","B","N","B","B","D","D","D","B","B","G","G","B","B","D",
-  "_","_","D","W","B","B","B","B","B","B","B","B","B","B","B","B","B","B","T","D",
-  "_","_","_","D","W","W","B","B","B","B","B","B","B","B","B","B","B","D","_","_",
-  "_","_","_","_","D","D","B","B","T","B","B","B","T","B","B","D","D","_","_","_",
-  "_","_","_","_","D","W","D","_","_","D","W","_","D","W","D","_","_","_","_","_",
-  "_","_","_","_","_","D","_","_","_","_","D","_","D","_","D","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-];
-
-// Walk frame 3 — back legs shift
-const F3 = [
-  "_","_","_","_","_","D","D","D","_","_","_","_","_","_","_","D","D","_","_","_",
-  "_","_","_","_","D","B","B","B","D","_","_","_","_","_","D","B","B","D","_","_",
-  "_","_","_","D","B","B","E","B","B","D","_","_","_","D","B","B","B","B","D","_",
-  "_","_","D","B","B","B","B","N","B","B","D","D","D","B","B","G","G","B","B","D",
-  "_","_","D","W","B","B","B","B","B","B","B","B","B","B","B","B","B","B","T","D",
-  "_","_","_","D","W","W","B","B","B","B","B","B","B","B","B","B","B","D","_","_",
-  "_","_","_","_","D","D","B","B","T","B","B","B","T","B","B","D","D","_","_","_",
-  "_","_","_","D","W","D","_","_","D","W","D","_","_","D","W","D","_","_","_","_",
-  "_","_","_","D","_","_","_","_","_","D","_","_","_","D","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-  "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_",
-];
-
-const FRAMES = [F1, F2, F1, F3];
-const GRID_W = 20, GRID_H = 12, PIXEL = 5;
-
-const dogWrap   = document.getElementById("dogWrap");
-const dogCanvas = document.getElementById("dogCanvas");
-
-if (dogWrap && dogCanvas) {
-  const dctx = dogCanvas.getContext("2d");
-  dogCanvas.width  = GRID_W * PIXEL;
-  dogCanvas.height = GRID_H * PIXEL;
-
-  let frameIdx = 0, frameTick = 0;
-  const FRAME_SPEED = 9;
-  let dogX = -120;
-  const dogSpeed = 1.4;
-
-  function drawDog(frame) {
-    dctx.clearRect(0, 0, dogCanvas.width, dogCanvas.height);
-    for (let row = 0; row < GRID_H; row++) {
-      for (let col = 0; col < GRID_W; col++) {
-        const color = C[frame[row * GRID_W + col]];
-        if (!color) continue;
-        dctx.fillStyle = color;
-        dctx.fillRect(col * PIXEL, row * PIXEL, PIXEL, PIXEL);
-      }
-    }
-  }
-
-  function animateDog() {
-    frameTick++;
-    if (frameTick >= FRAME_SPEED) { frameTick = 0; frameIdx = (frameIdx + 1) % FRAMES.length; }
-    dogX += dogSpeed;
-    if (dogX > window.innerWidth + 120) dogX = -120;
-    dogWrap.style.transform = `translateX(${dogX}px)`;
-    drawDog(FRAMES[frameIdx]);
-    requestAnimationFrame(animateDog);
-  }
-  animateDog();
-}

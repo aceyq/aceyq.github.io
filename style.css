@@ -47,18 +47,12 @@ nav {
   z-index: 100;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 18px 48px;
   background: rgba(10,13,11,0.80);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
-.nav-name {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  color: var(--text);
-}
-.nav-name .dot { color: var(--gold); }
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a {
   font-family: var(--font-mono);
@@ -165,19 +159,6 @@ h1.name {
   box-shadow: 0 0 18px rgba(232,201,122,0.09);
 }
 
-/* ---- DOG ---- */
-.dog-track {
-  position: fixed;
-  bottom: 30px;
-  left: 0; right: 0;
-  height: 64px;
-  pointer-events: none;
-  z-index: 10;
-  overflow: hidden;
-}
-.dog-wrap { position: absolute; bottom: 0; left: -120px; }
-#dogCanvas { image-rendering: pixelated; width: 100px; height: 60px; }
-
 /* ---- FOOTER ---- */
 footer {
   text-align: center;
@@ -257,8 +238,7 @@ footer {
   line-height: 1.82;
 }
 .about-intro {
-  font-family: var(--font-display);
-  font-size: 1.1rem !important;
+  font-size: 1.05rem !important;
 }
 
 .about-currently {
