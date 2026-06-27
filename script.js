@@ -4,11 +4,12 @@
 
 // ---- ROTATING TEXT ----
 const phrases = [
-  "dog lover",
-  "golden retriever enthusiast",
-  "self-proclaimed chef",
-  "data science student",
-  "business analytics student",
+  "Data Science Student",
+  "Business Analytics Student",
+  "KOTX Dance Coordinator",
+  "Self-Proclaimed Chef",
+  "Dog Lover",
+  "Golden Retriever Enthusiast",
 ];
 
 const el = document.getElementById("rotator");
@@ -160,6 +161,15 @@ if (fc) {
     twinkle: (Math.random() * 0.003 + 0.001) * (Math.random() < 0.5 ? 1 : -1),
   }));
 
+  const clouds = Array.from({ length: 6 }, () => ({
+    x: Math.random() * (typeof W !== 'undefined' ? W : 800),
+    y: (typeof H !== 'undefined' ? H : 600) * (0.12 + Math.random() * 0.35),
+    w: Math.random() * 220 + 140,
+    h: Math.random() * 35 + 18,
+    speed: Math.random() * 0.12 + 0.04,
+    alpha: Math.random() * 0.03 + 0.015,
+  }));
+
   function drawFlies() {
     ctx.clearRect(0, 0, W, H);
 
@@ -187,6 +197,24 @@ if (fc) {
     ctx.arc(mx, my, 15, 0, Math.PI * 2);
     ctx.fillStyle = "rgba(240,235,220,0.13)";
     ctx.fill();
+
+    // Drifting clouds
+    for (const c of clouds) {
+      c.x += c.speed;
+      if (c.x > W + c.w) c.x = -c.w * 1.5;
+      const blobs = [
+        { dx: 0, dy: 0, rx: c.w * 0.5, ry: c.h * 0.45 },
+        { dx: -c.w * 0.28, dy: c.h * 0.1, rx: c.w * 0.35, ry: c.h * 0.35 },
+        { dx: c.w * 0.26, dy: -c.h * 0.06, rx: c.w * 0.32, ry: c.h * 0.32 },
+        { dx: c.w * 0.1, dy: c.h * 0.15, rx: c.w * 0.25, ry: c.h * 0.28 },
+      ];
+      for (const b of blobs) {
+        ctx.beginPath();
+        ctx.ellipse(c.x + b.dx, c.y + b.dy, b.rx, b.ry, 0, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180,185,175,${c.alpha})`;
+        ctx.fill();
+      }
+    }
 
     // Rolling hills
     ctx.beginPath();

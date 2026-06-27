@@ -93,9 +93,9 @@ nav {
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(232,201,122,0.04) 0%, transparent 65%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(232,201,122,0.06) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero-inner {
@@ -133,11 +133,12 @@ h1.name {
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 .tagline {
-  font-size: 0.86rem;
-  color: var(--text-dim);
+  font-size: 0.9rem;
+  color: var(--text);
   margin-bottom: 44px;
   font-style: italic;
   font-family: var(--font-display);
+  opacity: 0.8;
 }
 
 /* ---- PILLS ---- */
